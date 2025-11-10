@@ -3,24 +3,25 @@ def count_words(text):
     return len(words)
 
 def count_characters(text):
-    letters = {
-        "a":0, "b":0,
-        "c":0, "d":0,
-        "e":0, "f":0,
-        "g":0, "h":0,
-        "i":0, "j":0,
-        "k":0, "l":0,
-        "m":0, "n":0,
-        "o":0, "p":0,
-        "q":0, "r":0,
-        "s":0, "t":0,
-        "u":0, "v":0,
-        "w":0, "x":0,
-        "y":0, "z":0
-        }
-    
-    for letter in text:
-        if letter.lower() in letters:
-            letters[letter.lower()] += 1
+    characters = {}
 
+    for char in text:
+        if char.lower() in characters:
+            characters[char.lower()] += 1
+        else:
+            characters[char.lower()] = 1
+
+    return characters
+
+def sort_chars_on(letter):
+    return letter["num"]
+
+def sort_chars(characters):
+    letters = []
+    for char in characters:
+        if char.isalpha():
+            letters.append({"char":char, "num": characters[char]})
+    
+    letters.sort(reverse=True, key=sort_chars_on)
+    
     return letters
